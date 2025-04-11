@@ -29,7 +29,7 @@ app.get("/api/v1/products/:productID", (req, res) => {
   const idToFind = parseInt(req.params.productID);
   const product = products.find((p) => p.id === idToFind);
   if (!product) {
-    res.status(404).send("404 - Product Not Found");
+    return res.status(404).send("404 - Product Not Found");
   }
   res.json(product);
 });
