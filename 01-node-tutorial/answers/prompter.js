@@ -33,6 +33,7 @@ const form = () => {
   <input name="item"></input>
   <button type="submit">Submit</button>
   </form>
+  <p>Liuba's comment</p>
   </body>
   `;
 };
@@ -58,6 +59,10 @@ const server = http.createServer((req, res) => {
   } else {
     res.end(form());
   }
+});
+
+server.on("request", (req) => {
+  console.log("event received:", req.method, req.url);
 });
 
 server.listen(3000);
