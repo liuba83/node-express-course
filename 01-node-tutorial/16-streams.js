@@ -12,7 +12,7 @@ const { createReadStream } = require("fs");
 // })
 // stream.on('error', (err) => console.log(err))
 
-const stream = createReadStream("../content/big.txt", {
+const stream = createReadStream("./content/big.txt", {
   encoding: "utf8",
   highWaterMark: 200,
 });
