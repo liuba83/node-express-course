@@ -10,8 +10,11 @@
     <button id="get-products">Get Products</button>
     <script>
       const buttonElement = document.getElementById("get-products");
+      let fetched = false;
 
       buttonElement.addEventListener("click", () => {
+        if (fetched === true) return;
+        fetched = true;
         fetch("/api/v1/products")
           .then((response) => {
             if (!response.ok) {
