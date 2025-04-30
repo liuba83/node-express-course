@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Week 3 assignment</h2>
+    <button id="get-products">Get Products</button>
+    <script>
+      const buttonElement = document.getElementById("get-products");
+      let fetched = false;
+
+      buttonElement.addEventListener("click", () => {
+        if (fetched === true) return;
+        fetched = true;
+        fetch("/api/v1/products")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Products fetched:", data.products);
+            data.products.forEach((product) => {
+              const productEl = document.createElement("p");
+              productEl.textContent = `${product.name} - $${product.price}`;
+              document.body.appendChild(productEl);
+            });
+          })
+          .catch((error) => {
+            console.error("Fetch error:", error);
+          });
+      });
+    </script>
+  </body>
+</html>
